@@ -18,6 +18,7 @@ class Calculation {
 
 		int counter = 0;
 
+		long startTime = System.currentTimeMillis();
 
 		for (Task task : taskList) {
 			ListIterator<Estimation> iterator = estimationList.listIterator();
@@ -39,6 +40,10 @@ class Calculation {
 			}
 
 			counter++;
+
+			long stopTime = System.currentTimeMillis();
+			long elapsedTime = stopTime - startTime;
+			System.out.println("depth=" + counter + " time=" + elapsedTime + ", variance=" + estimationList.size());
 		}
 
 		Collections.sort(estimationList, Estimation.COMPARE_BY_DURATION);
