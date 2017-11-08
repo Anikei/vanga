@@ -1,10 +1,12 @@
 import java.io.Serializable;
 import java.util.Comparator;
 
+import static java.lang.String.format;
+
 class Estimation implements Serializable {
 	private final String name;
-	private final double duration;
-	private final double probability;
+	final double duration;
+	double probability;
 	public final int taskCounter;
 
 
@@ -22,15 +24,31 @@ class Estimation implements Serializable {
 		this.taskCounter = estimation.taskCounter + 1;
 	}
 
+	void mergeProbability(double value) {
+		this.probability = this.probability + probability;
+	}
+
 	@Override
 	public String toString() {
 		return "Estimation{" +
 				//"name='" + name + '\'' +
-				", duration=" + duration +
-				", probability=" + probability +
+				",\tduration = " + duration +
+				",\tprobability=" + format("%.50f", probability) +
 				//", taskCounter=" + taskCounter +
 				'}';
 	}
+
+	public String toCSV() {
+		return "\"" +
+				//name + "\"," +
+				"\",\"" +
+				duration +
+				"\",\"" +
+				format("%.50f", probability) +
+				//", taskCounter=" + taskCounter +
+				"\"";
+	}
+
 
 	public static final Comparator<Estimation> COMPARE_BY_DURATION = new Comparator<Estimation>() {
 		@Override

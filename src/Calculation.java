@@ -18,9 +18,11 @@ class Calculation {
 
 		int counter = 0;
 
-		long startTime = System.currentTimeMillis();
+		//long startTime = System.currentTimeMillis();
 
 		for (Task task : taskList) {
+			counter++;
+
 			ListIterator<Estimation> iterator = estimationList.listIterator();
 			while (iterator.hasNext()) {
 				Estimation est = iterator.next();
@@ -39,20 +41,38 @@ class Calculation {
 				}
 			}
 
-			counter++;
+			Collections.sort(estimationList, Estimation.COMPARE_BY_DURATION);
 
+			ListIterator<Estimation> iterator3 = estimationList.listIterator();
+			Estimation estLeft = null;
+			if (iterator3.hasNext()) {
+				estLeft = iterator3.next();
+			}
+			while (iterator3.hasNext()) {
+				Estimation estRight = iterator3.next();
+				if (estLeft.duration == estRight.duration) {
+					estLeft.mergeProbability(estRight.probability);
+					iterator3.remove();
+				}
+				if (iterator3.hasNext()) {
+					estLeft = estRight;//сдвиг к следующему
+				}
+			}
+
+
+
+			/*
 			long stopTime = System.currentTimeMillis();
 			long elapsedTime = stopTime - startTime;
-			System.out.println("depth=" + counter + " time=" + elapsedTime + ", variance=" + estimationList.size());
+			System.out.println("depth=" + counter + "\ttime=" + elapsedTime + "\tvariance=" + estimationList.size());
+			*/
 		}
 
-		Collections.sort(estimationList, Estimation.COMPARE_BY_DURATION);
 
 		for (Estimation est : estimationList) {
-			System.out.println(est.toString());
+			//System.out.println(est.toString());
+			System.out.println(est.toCSV());
 		}
-
-		//сортировку и свертку списка перенести в цикл (чтобы не было так толсто)
 
 	}
 
