@@ -24,7 +24,7 @@ class Estimation implements Serializable {
 		this.taskCounter = estimation.taskCounter + 1;
 	}
 
-	void mergeProbability(double value) {
+	void mergeProbability(double probability) {
 		this.probability = this.probability + probability;
 	}
 

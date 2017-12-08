@@ -23,23 +23,8 @@ class Calculation {
 		for (Task task : taskList) {
 			counter++;
 
-			ListIterator<Estimation> iterator = estimationList.listIterator();
-			while (iterator.hasNext()) {
-				Estimation est = iterator.next();
-				if (est.taskCounter < counter) {
-					iterator.add(new Estimation(est, task.estimateOptimistic, DELTA));
-					iterator.add(new Estimation(est, task.estimateNormal, NORMAL));
-					iterator.add(new Estimation(est, task.estimatePessimistic, DELTA));
-
-				}
-			}
-			ListIterator<Estimation> iterator2 = estimationList.listIterator();
-			while (iterator2.hasNext()) {
-				Estimation est = iterator2.next();
-				if (est.taskCounter < counter) {
-					iterator2.remove();
-				}
-			}
+			map(counter, task);
+			reduceList(counter);
 
 			Collections.sort(estimationList, Estimation.COMPARE_BY_DURATION);
 
@@ -59,21 +44,35 @@ class Calculation {
 				}
 			}
 
-
-
-			/*
-			long stopTime = System.currentTimeMillis();
-			long elapsedTime = stopTime - startTime;
-			System.out.println("depth=" + counter + "\ttime=" + elapsedTime + "\tvariance=" + estimationList.size());
-			*/
 		}
-
 
 		for (Estimation est : estimationList) {
 			//System.out.println(est.toString());
 			System.out.println(est.toCSV());
 		}
 
+	}
+
+	private static void map(int counter, Task task) {
+		ListIterator<Estimation> iterator = estimationList.listIterator();
+		while (iterator.hasNext()) {
+			Estimation est = iterator.next();
+			if (est.taskCounter < counter) {
+				iterator.add(new Estimation(est, task.estimateOptimistic, DELTA));
+				iterator.add(new Estimation(est, task.estimateNormal, NORMAL));
+				iterator.add(new Estimation(est, task.estimatePessimistic, DELTA));
+			}
+		}
+	}
+
+	private static void reduceList(int counter) {
+		ListIterator<Estimation> iterator2 = estimationList.listIterator();
+		while (iterator2.hasNext()) {
+			Estimation est = iterator2.next();
+			if (est.taskCounter < counter) {
+				iterator2.remove();
+			}
+		}
 	}
 
 }
