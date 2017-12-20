@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.math.BigInteger;
+
 import static org.junit.Assert.*;
 
 public class FractionTest {
@@ -56,6 +58,33 @@ public class FractionTest {
 		Fraction b = new Fraction(60466176, 362797056);
 		Fraction c = new Fraction(60466177, 362797056);
 		a.add(b);
+		assertTrue(c.strongEqual(a));
+	}
+
+	@Test
+	public void multiplyTest1() {
+		Fraction a = new Fraction(0, 1);
+		Fraction b = new Fraction(0, 1);
+		Fraction c = new Fraction(0, 1);
+		a.multiply(b);
+		assertTrue(c.strongEqual(a));
+	}
+
+	@Test
+	public void multiplyTest2() {
+		Fraction a = new Fraction(1, 6);
+		Fraction b = new Fraction(4, 6);
+		Fraction c = new Fraction(4, 36);
+		a.multiply(b);
+		assertTrue(c.strongEqual(a));
+	}
+
+	@Test
+	public void multiplyTest3() {
+		Fraction a = new Fraction(1, 362797056);
+		Fraction b = new Fraction(60466176, 362797056);
+		Fraction c = new Fraction(new BigInteger("60466176"), new BigInteger("131621703842267136"));
+		a.multiply(b);
 		assertTrue(c.strongEqual(a));
 	}
 

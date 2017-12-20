@@ -58,9 +58,9 @@ class Calculation {
 		while (iterator.hasNext()) {
 			Estimation est = iterator.next();
 			if (est.taskCounter < counter) {
-				iterator.add(new Estimation(est, task.estimateOptimistic, DELTA));
-				iterator.add(new Estimation(est, task.estimateNormal, NORMAL));
-				iterator.add(new Estimation(est, task.estimatePessimistic, DELTA));
+				iterator.add(new Estimation(est, task.estimateOptimistic, new Fraction(1, 6)));
+				iterator.add(new Estimation(est, task.estimateNormal, new Fraction(4, 6)));
+				iterator.add(new Estimation(est, task.estimatePessimistic, new Fraction(1, 6)));
 			}
 		}
 	}

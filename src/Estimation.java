@@ -6,26 +6,26 @@ import static java.lang.String.format;
 class Estimation implements Serializable {
 	private final String name;
 	final double duration;
-	double probability;
+	Fraction probability;
 	public final int taskCounter;
 
 
 	Estimation(String name) {
 		this.name = name;
 		this.duration = 0;
-		this.probability = 1;
+		this.probability = new Fraction(1, 1);
 		this.taskCounter = 0;
 	}
 
-	Estimation(Estimation estimation, Double duration, double probability) {
+	Estimation(Estimation estimation, Double duration, Fraction probability) {
 		this.name = estimation.name;
 		this.duration = estimation.duration + duration;
-		this.probability = estimation.probability * probability;
+		this.probability = estimation.probability.multiply(probability);
 		this.taskCounter = estimation.taskCounter + 1;
 	}
 
-	void mergeProbability(double probability) {
-		this.probability = this.probability + probability;
+	void mergeProbability(Fraction probability) {
+		this.probability.add(probability);
 	}
 
 	@Override

@@ -1,4 +1,3 @@
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -24,8 +23,13 @@ public class Fraction {
 		}
 	}
 
-	private void multiply(Fraction fraction) {
-
+	void multiply(Fraction fraction) {
+		if (Objects.equals(this.denominator, fraction.denominator)) {
+			this.numeral = this.numeral.multiply(fraction.numeral);
+			this.denominator = this.denominator.multiply(fraction.denominator);
+		} else {
+			throw new RuntimeException(); //this should never occur during real work
+		}
 	}
 
 	boolean strongEqual(Fraction b) {
