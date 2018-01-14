@@ -4,7 +4,7 @@ import java.util.Comparator;
 class Estimation implements Serializable {
     private final String name;
     final double duration;
-    final Fraction probability;
+    Fraction probability;
     public final int taskCounter;
 
 
@@ -23,7 +23,7 @@ class Estimation implements Serializable {
     }
 
     void mergeProbability(Fraction probability) {
-        this.probability.add(probability);
+        this.probability = this.probability.add(probability);
     }
 
     @Override

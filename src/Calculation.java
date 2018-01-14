@@ -25,26 +25,27 @@ class Calculation {
 
             estimationList.sort(Estimation.COMPARE_BY_DURATION);
 
-            ListIterator<Estimation> iterator3 = estimationList.listIterator();
-            Estimation estLeft = null;
-            if (iterator3.hasNext()) {
-                estLeft = iterator3.next();
-            }
-            while (iterator3.hasNext()) {
-                Estimation estRight = iterator3.next();
-                if (estLeft.duration == estRight.duration) {
-                    estLeft.mergeProbability(estRight.probability);
-                    iterator3.remove();
-                }
-                if (iterator3.hasNext()) {
-                    estLeft = estRight;//сдвиг к следующему
-                }
-            }
-
+            merge();
         }
-
         print();
+    }
 
+    private static void merge() {
+        ListIterator<Estimation> iterator3 = estimationList.listIterator();
+        Estimation estLeft = null;
+        if (iterator3.hasNext()) {
+            estLeft = iterator3.next();
+        }
+        while (iterator3.hasNext()) {
+            Estimation estRight = iterator3.next();
+            if (estLeft.duration == estRight.duration) {
+                estLeft.mergeProbability(estRight.probability);
+                iterator3.remove();
+            }
+            else if (iterator3.hasNext()) {
+                estLeft = estRight;//сдвиг к следующему
+            }
+        }
     }
 
     private static void print() {

@@ -1,6 +1,9 @@
 name,opt,norm,pes
-Контейнер для отображения модальных контроллеров с затемненым фоном.,3,4,10
-Разобраться с текущим контейнером для экранов авторизации,"0,5",1,3
-Экран авторизации,2,3,5
-"Экран ""Забыли пароль""","0,5",1,2
-Экран подтверждения Почты после регистрации,"0,75","1,5",2
+Container for displaying modal controllers with the following background,3,4,10
+Deal with the current container for authorization screens,"0.5",1.3
+Authorization screen,2,3,5
+«Screen» «Forgot password»,«0,5»,1,2
+The Post ID screen after registration,"0.75","1.5",2
+Confirmation screen SMS code,1,2,6
+Create new password screen,"0,5",1,2
+The welcome screen, "0.5",1,2
