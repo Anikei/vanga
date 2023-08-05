@@ -1,6 +1,9 @@
+package com.anikei.vanga.util;
+
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import static junit.framework.TestCase.assertTrue;
@@ -100,7 +103,10 @@ public class FractionTest {
     @Ignore
     @Test
     public void testToDecimal() {
-        //TODO:
+        Fraction a = new Fraction(1, 4);
+		BigDecimal value = new BigDecimal(Float.toString(0.25F));
+		//FIXME:
+		//		assertTrue(value.equals(a.toDecimal()));
     }
 
 }

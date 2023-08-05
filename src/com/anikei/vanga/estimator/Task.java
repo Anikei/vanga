@@ -1,3 +1,5 @@
+package com.anikei.vanga.estimator;
+
 class Task {
     public final double estimateOptimistic;
     public final double estimateNormal;

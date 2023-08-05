@@ -1,5 +1,11 @@
+package com.anikei.vanga.estimator;
+
+import com.anikei.vanga.util.Fraction;
+
 import java.io.Serializable;
 import java.util.Comparator;
+
+import static java.lang.String.format;
 
 class Estimation implements Serializable {
     private final String name;
@@ -43,21 +49,19 @@ class Estimation implements Serializable {
                 + probability.toString();
     }
 
-	/*
-	public String toCSV() {
-		return "\"" +
-				//name + "\"," +
-				"\",\"" +
-				duration +
-				"\",\"" +
-				format("%.50f", probability) +
-				//", taskCounter=" + taskCounter +
-				"\"";
-	}
-	*/
+    public String toCSV() {
+        return "\"" +
+                //name + "\"," +
+                "\",\"" +
+                duration +
+                "\",\"" +
+                format("%.50f", probability) +
+                //", taskCounter=" + taskCounter +
+                "\"";
+    }
 
 
-    public static final Comparator<Estimation> COMPARE_BY_DURATION = new Comparator<Estimation>() {
+    public static final Comparator<Estimation> COMPARE_BY_DURATION = new Comparator<>() {
         @Override
         public int compare(Estimation lhs, Estimation rhs) {
             return (int) ((lhs.duration - rhs.duration) * 10);//костыль сравнения дробных показателей

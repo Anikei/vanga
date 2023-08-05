@@ -1,3 +1,7 @@
+package com.anikei.vanga.estimator;
+
+import com.anikei.vanga.estimator.Estimation;
+import com.anikei.vanga.util.Fraction;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;
