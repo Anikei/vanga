@@ -1,3 +1,7 @@
+package com.anikei.vanga.estimator;
+
+import com.anikei.vanga.util.Fraction;
+
 import java.io.File;
 import java.util.*;
 
